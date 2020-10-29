@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COO.BackendApi", "COO.BackendApi\COO.BackendApi.csproj", "{8AD38C55-8DDA-4F3D-B2B1-4656AE78D08C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 Solution Items", "0 Solution Items", "{E677041C-49BF-4C2E-882F-EB3F97CB0B0A}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Infarstructure", "1. Infarstructure", "{DEBC3D71-AF20-4D30-B4B8-95CE7C0B23DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domain", "2. Domain", "{69B33630-5EA7-45E0-8D26-952D04A896D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Hosts", "3. Hosts", "{092E6CB5-A9EE-4F24-B872-E6242ABF1AB6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AD38C55-8DDA-4F3D-B2B1-4656AE78D08C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AD38C55-8DDA-4F3D-B2B1-4656AE78D08C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AD38C55-8DDA-4F3D-B2B1-4656AE78D08C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AD38C55-8DDA-4F3D-B2B1-4656AE78D08C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8AD38C55-8DDA-4F3D-B2B1-4656AE78D08C} = {092E6CB5-A9EE-4F24-B872-E6242ABF1AB6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27145902-0E93-4D2B-B86D-9B155214079E}
+	EndGlobalSection
+EndGlobal
