@@ -1,0 +1,20 @@
+2020-11-04 14:36:08.412 +07:00 [INF] Starting up the service
+2020-11-04 14:36:10.231 +07:00 [INF] Default Quartz.NET properties loaded from embedded resource file
+2020-11-04 14:36:10.352 +07:00 [DBG] TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2020-11-04 14:36:10.391 +07:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2020-11-04 14:36:10.394 +07:00 [INF] Quartz Scheduler v.3.2.3.0 created.
+2020-11-04 14:36:10.396 +07:00 [INF] RAMJobStore initialized.
+2020-11-04 14:36:10.414 +07:00 [INF] Scheduler meta-data: Quartz Scheduler (v3.2.3.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2020-11-04 14:36:10.414 +07:00 [INF] Quartz scheduler 'DefaultQuartzScheduler' initialized
+2020-11-04 14:36:10.414 +07:00 [INF] Quartz scheduler version: 3.2.3.0
+2020-11-04 14:36:10.429 +07:00 [INF] Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2020-11-04 14:36:10.462 +07:00 [DBG] Batch acquisition of 0 triggers
+2020-11-04 14:36:10.491 +07:00 [INF] JobFactory set to: COO.Service.DemoJobFactory
+2020-11-04 14:36:10.505 +07:00 [DBG] Batch acquisition of 1 triggers
