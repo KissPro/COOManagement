@@ -55,8 +55,10 @@ namespace COO.Application.Config.CountryShip
             var country = await _context.TblCountryShip.FindAsync(request.Id);
             if (country == null) throw new COOException($"Can not find a country: {request.Id}");
 
-            country.ShipId = request.ShipId;
-            country.CountryName = request.CountryName;
+            country.HMDShipToCode = request.HMDShipToCode;
+            country.HMDShipToParty = request.HMDShipToParty;
+            country.ShipToCountryCode = request.ShipToCountryCode;
+            country.ShipToCountryName = request.ShipToCountryName;
             country.RemarkCountry = request.RemarkCountry;
             country.UpdatedBy = request.UpdatedBy;
             country.UpdatedDate = request.UpdatedDate;

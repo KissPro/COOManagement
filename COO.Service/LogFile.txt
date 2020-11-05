@@ -18,3 +18,77 @@
 2020-11-04 14:36:10.462 +07:00 [DBG] Batch acquisition of 0 triggers
 2020-11-04 14:36:10.491 +07:00 [INF] JobFactory set to: COO.Service.DemoJobFactory
 2020-11-04 14:36:10.505 +07:00 [DBG] Batch acquisition of 1 triggers
+2020-11-04 15:08:59.607 +07:00 [INF] Starting up the service
+2020-11-04 15:09:01.249 +07:00 [INF] Adding 1 jobs, 1 triggers.
+2020-11-04 15:09:01.252 +07:00 [INF] Adding job: awesome group.awesome job
+2020-11-04 15:09:01.257 +07:00 [DBG] Scheduling job: awesome group.awesome job with trigger: group.trigger_Now
+2020-11-04 15:09:01.267 +07:00 [DBG] Rescheduling job: awesome group.awesome job with updated trigger: group.trigger_Now
+2020-11-04 15:14:48.301 +07:00 [INF] Starting up the service
+2020-11-04 15:14:49.600 +07:00 [INF] Adding 1 jobs, 1 triggers.
+2020-11-04 15:14:49.603 +07:00 [INF] Adding job: awesome group.awesome job
+2020-11-04 15:14:49.611 +07:00 [DBG] Scheduling job: awesome group.awesome job with trigger: group.trigger_Now
+2020-11-04 15:14:49.623 +07:00 [DBG] Rescheduling job: awesome group.awesome job with updated trigger: group.trigger_Now
+2020-11-04 15:16:25.066 +07:00 [INF] Starting up the service
+2020-11-04 15:16:26.651 +07:00 [INF] Adding 1 jobs, 1 triggers.
+2020-11-04 15:16:26.655 +07:00 [INF] Adding job: awesome group.awesome job
+2020-11-04 15:16:26.661 +07:00 [DBG] Scheduling job: awesome group.awesome job with trigger: group.trigger_Now
+2020-11-04 15:16:26.676 +07:00 [DBG] Rescheduling job: awesome group.awesome job with updated trigger: group.trigger_Now
+2020-11-04 15:16:49.665 +07:00 [INF] Starting up the service
+2020-11-04 15:16:51.033 +07:00 [INF] Adding 1 jobs, 1 triggers.
+2020-11-04 15:16:51.036 +07:00 [INF] Adding job: awesome group.awesome job
+2020-11-04 15:16:51.043 +07:00 [DBG] Scheduling job: awesome group.awesome job with trigger: group.trigger_Now
+2020-11-04 15:16:51.055 +07:00 [DBG] Rescheduling job: awesome group.awesome job with updated trigger: group.trigger_Now
+2020-11-04 15:23:53.824 +07:00 [INF] Starting up the service
+2020-11-04 15:23:55.360 +07:00 [INF] Adding 1 jobs, 1 triggers.
+2020-11-04 15:23:55.362 +07:00 [INF] Adding job: awesome group.awesome job
+2020-11-04 15:23:55.368 +07:00 [DBG] Scheduling job: awesome group.awesome job with trigger: group.trigger_Now
+2020-11-04 15:23:55.381 +07:00 [DBG] Rescheduling job: awesome group.awesome job with updated trigger: group.trigger_Now
+2020-11-04 15:26:09.330 +07:00 [INF] Starting up the service
+2020-11-04 15:26:10.621 +07:00 [INF] Adding 1 jobs, 1 triggers.
+2020-11-04 15:26:10.623 +07:00 [INF] Adding job: awesome group.awesome job
+2020-11-04 15:26:10.630 +07:00 [DBG] Scheduling job: awesome group.awesome job with trigger: group.trigger_Now
+2020-11-04 15:26:10.642 +07:00 [DBG] Rescheduling job: awesome group.awesome job with updated trigger: group.trigger_Now
+2020-11-04 15:33:50.145 +07:00 [INF] Starting up the service
+2020-11-04 15:34:15.001 +07:00 [INF] Default Quartz.NET properties loaded from embedded resource file
+2020-11-04 15:34:15.066 +07:00 [DBG] TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2020-11-04 15:34:15.095 +07:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2020-11-04 15:34:15.097 +07:00 [INF] Quartz Scheduler v.3.2.3.0 created.
+2020-11-04 15:34:15.105 +07:00 [INF] RAMJobStore initialized.
+2020-11-04 15:34:15.107 +07:00 [INF] Scheduler meta-data: Quartz Scheduler (v3.2.3.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2020-11-04 15:34:15.108 +07:00 [INF] Quartz scheduler 'DefaultQuartzScheduler' initialized
+2020-11-04 15:34:15.108 +07:00 [INF] Quartz scheduler version: 3.2.3.0
+2020-11-04 15:34:15.114 +07:00 [INF] Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2020-11-04 15:34:15.130 +07:00 [DBG] Batch acquisition of 0 triggers
+2020-11-04 15:34:15.159 +07:00 [INF] JobFactory set to: COO.Service.DemoJobFactory
+2020-11-04 15:34:15.166 +07:00 [DBG] Batch acquisition of 1 triggers
+2020-11-04 15:34:15.376 +07:00 [DBG] Batch acquisition of 0 triggers
+2020-11-04 15:34:15.396 +07:00 [DBG] Calling Execute on job gtoup.job1
+2020-11-04 15:57:25.930 +07:00 [INF] Starting up the service
+2020-11-04 15:57:27.646 +07:00 [INF] Default Quartz.NET properties loaded from embedded resource file
+2020-11-04 15:57:27.734 +07:00 [DBG] TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+2020-11-04 15:57:27.762 +07:00 [INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+2020-11-04 15:57:27.764 +07:00 [INF] Quartz Scheduler v.3.2.3.0 created.
+2020-11-04 15:57:27.765 +07:00 [INF] RAMJobStore initialized.
+2020-11-04 15:57:27.769 +07:00 [INF] Scheduler meta-data: Quartz Scheduler (v3.2.3.0) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2020-11-04 15:57:27.769 +07:00 [INF] Quartz scheduler 'DefaultQuartzScheduler' initialized
+2020-11-04 15:57:27.769 +07:00 [INF] Quartz scheduler version: 3.2.3.0
+2020-11-04 15:57:27.787 +07:00 [INF] Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+2020-11-04 15:57:27.811 +07:00 [DBG] Batch acquisition of 0 triggers
+2020-11-04 15:57:27.835 +07:00 [INF] JobFactory set to: COO.Service.EcusJobFactory
+2020-11-04 15:57:27.847 +07:00 [DBG] Batch acquisition of 1 triggers
+2020-11-04 15:57:28.150 +07:00 [DBG] Batch acquisition of 0 triggers
+2020-11-04 15:57:28.174 +07:00 [DBG] Calling Execute on job gtoup.job1

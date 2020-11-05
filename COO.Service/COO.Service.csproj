@@ -5,6 +5,10 @@
     <UserSecretsId>dotnet-COO.Service-10D74BA0-901E-4626-ACCC-AEA8E348FFE5</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Publish\**" />
     <Content Remove="Publish\**" />
