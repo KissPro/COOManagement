@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "COO.ServiceSAP": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

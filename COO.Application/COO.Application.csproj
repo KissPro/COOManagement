@@ -6,15 +6,16 @@
 
   <ItemGroup>
     <PackageReference Include="EFCore.BulkExtensions" Version="3.2.5" />
-    <PackageReference Include="NwRfcNet" Version="0.7.0" />
-    <PackageReference Include="SAPMiddlewareConnector" Version="3.0.2" />
-    <PackageReference Include="SapNwRfc" Version="1.0.0.64" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\COO.Data\COO.Data.csproj" />
     <ProjectReference Include="..\COO.Utilities\COO.Utilities.csproj" />
     <ProjectReference Include="..\COO.ViewModels\COO.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\" />
   </ItemGroup>
 
 </Project>

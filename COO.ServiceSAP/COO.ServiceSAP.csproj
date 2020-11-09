@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>dotnet-COO.ServiceSAP-11C622E8-A8D6-434F-A603-4D128C07A4FA</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flurl" Version="3.0.0" />
+    <PackageReference Include="Flurl.Http" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="3.1.9" />
+    <PackageReference Include="Quartz.AspNetCore" Version="3.2.3" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\COO.Application\COO.Application.csproj" />
+    <ProjectReference Include="..\COO.Data\COO.Data.csproj" />
+    <ProjectReference Include="..\COO.Utilities\COO.Utilities.csproj" />
+    <ProjectReference Include="..\COO.ViewModels\COO.ViewModels.csproj" />
+  </ItemGroup>
+</Project>

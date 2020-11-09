@@ -27,6 +27,8 @@ namespace COO.Service
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 .Enrich.FromLogContext()
                 .WriteTo.File(AppDomain.CurrentDomain.BaseDirectory + "\\LogFile.txt")
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+                .MinimumLevel.Override("Quartz", LogEventLevel.Information)
                 .CreateLogger();
             try
             {
@@ -47,7 +49,7 @@ namespace COO.Service
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                //.UseWindowsService()
+                .UseWindowsService()
                 .ConfigureServices((hostContext, services) =>
                 {
                     IConfiguration configuration = hostContext.Configuration;
@@ -64,10 +66,7 @@ namespace COO.Service
 
                     // Add Quartz services
                     services.AddTransient<ISchedulerFactory, StdSchedulerFactory>();
-
-                    services.AddSingleton<IServiceCollection, ServiceCollection>();
-
-
+                    services.AddTransient<IServiceCollection, ServiceCollection>();
                     services.AddHostedService<Worker>();
                 });
     }

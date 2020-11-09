@@ -56,7 +56,7 @@ namespace COO.Application.MainFuction.EcusTS
             {
                 if (listEcusTs == null || listEcusTs.Count == 0)
                     return 0;
-                await _context.BulkInsertAsync(listEcusTs);
+                await _context.BulkInsertAsync(listEcusTs ,new BulkConfig { BulkCopyTimeout = 1000000 });
             }
             catch (Exception ex)
             {

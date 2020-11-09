@@ -25,20 +25,20 @@ namespace COO.Data.EF
 
 
         //For migrations database
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//        {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer("data source=HVNN0606\\SQLEXPRESS;initial catalog=COO;user id=sa;password=123;MultipleActiveResultSets=True;");
-//            }
-//        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("data source=HVNN0606\\SQLEXPRESS;initial catalog=COO;user id=sa;password=123;MultipleActiveResultSets=True;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TblBoom>(entity =>
             {
-                entity.HasKey(e => e.Material)
+                entity.HasKey(e => e.Id)
                     .HasName("PK_tblBoom_1");
 
                 entity.ToTable("tbl_Boom");
@@ -68,6 +68,10 @@ namespace COO.Data.EF
                 entity.Property(e => e.SortString)
                     .HasMaxLength(10)
                     .IsUnicode(false);
+                
+                entity.Property(e => e.AltGroup)
+                  .HasMaxLength(10)
+                  .IsUnicode(false);
             });
 
             modelBuilder.Entity<TblConfig>(entity =>
@@ -179,6 +183,9 @@ namespace COO.Data.EF
                     .HasMaxLength(200);
                 entity.Property(e => e.Address)
                     .HasMaxLength(500);
+
+                entity.Property(e => e.Plant)
+                   .HasMaxLength(10);
 
                 entity.Property(e => e.PlanGidate)
                     .HasColumnName("PlanGIDate")
