@@ -9,6 +9,6 @@ namespace COO.Data.EF
         public string Plant { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime UpdatedDate { get; set; }
-        public string RemarkCountry { get; set; }
+        public string RemarkPlant { get; set; }
     }
 }

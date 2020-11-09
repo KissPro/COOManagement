@@ -18,15 +18,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Hosts", "3. Hosts", "{09
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "COO.Data", "COO.Data\COO.Data.csproj", "{A5D49B71-5FEE-448C-ACEA-F3E232496557}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COO.Application", "COO.Application\COO.Application.csproj", "{7974AC1F-8D4C-4678-B6BB-33DCC9E845F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "COO.Application", "COO.Application\COO.Application.csproj", "{7974AC1F-8D4C-4678-B6BB-33DCC9E845F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COO.ViewModels", "COO.ViewModels\COO.ViewModels.csproj", "{29317201-21F2-456F-B45B-B19237F5AA72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "COO.ViewModels", "COO.ViewModels\COO.ViewModels.csproj", "{29317201-21F2-456F-B45B-B19237F5AA72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COO.Utilities", "COO.Utilities\COO.Utilities.csproj", "{24FBEF22-2435-4661-A140-FB7173B95D64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "COO.Utilities", "COO.Utilities\COO.Utilities.csproj", "{24FBEF22-2435-4661-A140-FB7173B95D64}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Service", "4. Service", "{FA2CE392-C2D5-4804-975E-BD076DCCCCB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COO.Service", "COO.Service\COO.Service.csproj", "{76C79AEB-9BD3-4213-A73C-EE24FA64AE7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "COO.Service", "COO.Service\COO.Service.csproj", "{76C79AEB-9BD3-4213-A73C-EE24FA64AE7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

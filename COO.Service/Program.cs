@@ -26,7 +26,7 @@ namespace COO.Service
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 .Enrich.FromLogContext()
-                .WriteTo.File(@"C:\Users\v1517299\source\repos\COOManagement\COO.Service\LogFile.txt")
+                .WriteTo.File(AppDomain.CurrentDomain.BaseDirectory + "\\LogFile.txt")
                 .CreateLogger();
             try
             {
@@ -62,9 +62,10 @@ namespace COO.Service
                     //services.AddTransient<IEcusService, EcusService>();
                     //services.AddTransient<CollectListEcusTS>();
 
-                    //// Add Quartz services
-                    //services.AddSingleton<IJobFactory, DemoJobFactory>();
-                    //services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
+                    // Add Quartz services
+                    services.AddTransient<ISchedulerFactory, StdSchedulerFactory>();
+
+                    services.AddSingleton<IServiceCollection, ServiceCollection>();
 
 
                     services.AddHostedService<Worker>();

@@ -24,7 +24,7 @@ namespace COO.Data.EF
         public virtual DbSet<TblPlant> TblPlant { get; set; }
 
 
-        // For migrations database
+        //For migrations database
 //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //        {
 //            if (!optionsBuilder.IsConfigured)
@@ -112,18 +112,29 @@ namespace COO.Data.EF
                     .HasColumnName("ID")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.CountryName)
+                entity.Property(e => e.HMDShipToCode)
+                   .IsRequired()
+                   .HasColumnName("HMDShipToCode")
+                   .HasMaxLength(20)
+                   .IsFixedLength();
+
+                entity.Property(e => e.ShipToCountryCode)
+                   .IsRequired()
+                   .HasColumnName("ShipToCountryCode")
+                   .HasMaxLength(10)
+                   .IsFixedLength();
+
+                entity.Property(e => e.HMDShipToParty)
                     .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RemarkCountry).HasMaxLength(500);
+                entity.Property(e => e.ShipToCountryName)
+                     .IsRequired()
+                     .HasMaxLength(200)
+                     .IsUnicode(false);
 
-                entity.Property(e => e.ShipId)
-                    .IsRequired()
-                    .HasColumnName("ShipID")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                entity.Property(e => e.RemarkCountry).HasMaxLength(500);
 
                 entity.Property(e => e.UpdatedBy)
                     .IsRequired()
@@ -288,7 +299,7 @@ namespace COO.Data.EF
                     .HasMaxLength(10)
                     .IsFixedLength();
 
-                entity.Property(e => e.RemarkCountry).HasMaxLength(500);
+                entity.Property(e => e.RemarkPlant).HasMaxLength(500);
 
                 entity.Property(e => e.UpdatedBy)
                     .IsRequired()

@@ -10,9 +10,10 @@ namespace COO.Application.MainFuction.Boom
 {
     public interface IBoomService
     {
-        Task<int> Create(BoomCreateRequest request);
-
-        Task<int> Update(BoomCreateRequest requets);
-        Task<List<TblBoom>> GetAll();
+        Task<List<TblBoom>> GetListAll();
+        Task<Guid> Create(TblBoom request);
+        Task<int> Delete(Guid id);
+        Task<TblBoom> GetById(Guid id);
+        Task<int> InsertList(List<TblBoom> listBoom);
     }
 }
