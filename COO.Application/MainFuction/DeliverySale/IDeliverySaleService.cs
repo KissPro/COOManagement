@@ -13,5 +13,7 @@ namespace COO.Application.MainFuction.DeliverySale
         Task<int> Delete(Guid id);
         Task<TblDeliverySales> GetById(Guid id);
         Task<int> InsertList(List<TblDeliverySales> listDS);
+
+        Task<int> UpdateStatus(Guid id, int status);
     }
 }

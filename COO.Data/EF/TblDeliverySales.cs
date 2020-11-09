@@ -25,6 +25,7 @@ namespace COO.Data.EF
         public decimal NetPrice { get; set; }
         public string HarmonizationCode { get; set; }
         public string Address { get; set; }
+        public string Plant { get; set; }
         public DateTime PlanGidate { get; set; }
         public DateTime PlanGisysDate { get; set; }
         public DateTime InsertedDate { get; set; }

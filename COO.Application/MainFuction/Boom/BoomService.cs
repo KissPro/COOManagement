@@ -53,11 +53,10 @@ namespace COO.Application.MainFuction.Boom
             {
                 if (listboom == null || listboom.Count == 0)
                     return 0;
-                await _context.BulkInsertAsync(listboom);
+                await _context.BulkInsertAsync(listboom, new BulkConfig { BulkCopyTimeout = 1000000 });
             }
             catch (Exception ex)
             {
-                return -1;
                 throw new COOException($"Error insert list boom:" + ex);
             }
             return 1;

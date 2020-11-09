@@ -21,25 +21,28 @@ namespace COO.Data.Migrations
 
             modelBuilder.Entity("COO.Data.EF.TblBoom", b =>
                 {
-                    b.Property<string>("Material")
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("AltGroup")
-                        .HasColumnType("int");
+                    b.Property<string>("AltGroup")
+                        .HasColumnType("varchar(10)")
+                        .HasMaxLength(10)
+                        .IsUnicode(false);
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.Property<Guid>("Id")
-                        .HasColumnName("ID")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime?>("InsertedDate")
                         .HasColumnType("datetime");
+
+                    b.Property<string>("Material")
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
 
                     b.Property<string>("ParentMaterial")
                         .IsRequired()
@@ -61,7 +64,7 @@ namespace COO.Data.Migrations
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
-                    b.HasKey("Material")
+                    b.HasKey("Id")
                         .HasName("PK_tblBoom_1");
 
                     b.ToTable("tbl_Boom");
@@ -228,6 +231,10 @@ namespace COO.Data.Migrations
                     b.Property<DateTime>("PlanGisysDate")
                         .HasColumnName("PlanGISysDate")
                         .HasColumnType("datetime");
+
+                    b.Property<string>("Plant")
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<string>("SaleUnit")
                         .IsRequired()
