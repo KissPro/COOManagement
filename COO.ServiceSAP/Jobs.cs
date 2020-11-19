@@ -1,7 +1,7 @@
 ﻿using COO.Application.Config.Config;
 using COO.Application.Config.Plant;
 using COO.Application.MainFuction.DeliverySale;
-using COO.Application.MainFuction.EcusTS;
+using COO.Application.MainFuction.BoomEcus;
 using COO.Data.EF;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
@@ -27,7 +27,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
-using COO.Application.MainFuction.Boom;
 using COO.Application.Config.CountryShip;
 using Microsoft.EntityFrameworkCore.Internal;
 
@@ -167,6 +166,9 @@ namespace COO.ServiceSAP
                     }
                 }
                 var uploadResultDS = await _dsService.InsertList(listDS);
+
+                //var uploadResultDS = 1;
+
                 if (uploadResultDS == 1)
                 {
                     Log.Information("========== Collect Delivery and Sales : Successfully ==========");
@@ -231,6 +233,8 @@ namespace COO.ServiceSAP
                                         SortString = dn["SORTF"].ToString(),
                                         AltGroup = dn["ALPGR"].ToString(),
                                         Plant = dn["WERKS"].ToString(),
+                                        Item = dn["POSNR"].ToString(),
+                                        Level = dn["STUFE"].ToString(),
                                         Description = dn["DESC"].ToString(),
                                         InsertedDate = DateTime.Now
                                     };

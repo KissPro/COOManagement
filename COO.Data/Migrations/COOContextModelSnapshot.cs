@@ -39,6 +39,16 @@ namespace COO.Data.Migrations
                     b.Property<DateTime?>("InsertedDate")
                         .HasColumnType("datetime");
 
+                    b.Property<string>("Item")
+                        .HasColumnType("varchar(10)")
+                        .HasMaxLength(10)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Level")
+                        .HasColumnType("varchar(10)")
+                        .HasMaxLength(10)
+                        .IsUnicode(false);
+
                     b.Property<string>("Material")
                         .HasColumnType("varchar(50)")
                         .HasMaxLength(50)
@@ -68,6 +78,75 @@ namespace COO.Data.Migrations
                         .HasName("PK_tblBoom_1");
 
                     b.ToTable("tbl_Boom");
+                });
+
+            modelBuilder.Entity("COO.Data.EF.TblBoomEcus", b =>
+                {
+                    b.Property<string>("AltGroup")
+                        .HasColumnType("varchar(10)")
+                        .HasMaxLength(10)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Country")
+                        .HasColumnType("varchar(20)")
+                        .HasMaxLength(20)
+                        .IsUnicode(false);
+
+                    b.Property<decimal?>("DonGiaHd")
+                        .HasColumnName("DonGiaHD")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("varchar(10)")
+                        .HasMaxLength(10)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Level")
+                        .HasColumnType("varchar(10)")
+                        .HasMaxLength(10)
+                        .IsUnicode(false);
+
+                    b.Property<string>("MaHS")
+                        .HasColumnName("MaHS")
+                        .HasColumnType("varchar(20)")
+                        .HasMaxLength(20)
+                        .IsUnicode(false);
+
+                    b.Property<DateTime?>("NgayDk")
+                        .HasColumnName("NgayDK")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("ParentMaterial")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Plant")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)")
+                        .HasMaxLength(10)
+                        .IsUnicode(false);
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SoTk")
+                        .HasColumnName("SoTK")
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<string>("SortString")
+                        .HasColumnType("varchar(10)")
+                        .HasMaxLength(10)
+                        .IsUnicode(false);
+
+                    b.Property<string>("TenHang")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.ToTable("tbl_BoomEcusTS");
                 });
 
             modelBuilder.Entity("COO.Data.EF.TblConfig", b =>

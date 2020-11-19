@@ -49,9 +49,9 @@ namespace COO.Application.Config.Plant
             return plant;
         }
 
-        public async Task<int> Update(TblPlant request)
+        public async Task<int> Update(Guid id, TblPlant request)
         {
-            var plant = await _context.TblPlant.FindAsync(request.Id);
+            var plant = await _context.TblPlant.FindAsync(id);
             if (plant == null) throw new COOException($"Can not find a plant: {request.Id}");
             plant.Plant = request.Plant;
             plant.UpdatedBy = request.UpdatedBy;

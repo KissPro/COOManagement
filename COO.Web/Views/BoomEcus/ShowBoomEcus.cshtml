@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewData["Title"] = "ShowBoomEcus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var listBoomEcus = (List<COO.Data.EF.ViewBoomEcus>)ViewBag.ListBoomEcus;
+}
+
+
+@section jsFooter {
+    <!--Add JS config-->
+    <script src="~/Content/js/BoomEcusController/BoomEcus.js"></script>
+}
+
+@using (Html.BeginForm("Inspection", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @id = "approval" }))
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-3">
+                    <i class="fas fa-table"></i>
+                    List Boom & Ecus TS
+                </div>
+                <div class="col-md-9" style="display:flex; justify-content:flex-end">
+                    <span class="btn-sm btn-success ml-1" id="btnExport">
+                        <i class="fas fa-download"></i>
+                        Download
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive" style="zoom:90%;">
+                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0"
+                       style="table-layout: fixed;word-wrap:break-word;">
+                    <thead>
+                        <tr>
+                            <th style="width:2.5rem;">#</th>
+                            <th>Ten Hang</th>
+                            <th>Ma HS</th>
+                            <th>Quantity</th>
+                            <th>Don gia HD</th>
+                            <th>Country</th>
+                            <th>So TK</th>
+                            <th>Ngay DK</th>
+                            <th>Alt Group</th>
+                            <th>Sort String</th>
+                            <th>Parent Material</th>
+                            <th>Level</th>
+                            <th>Item</th>
+                            <th>Plant</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+}

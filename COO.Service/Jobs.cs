@@ -1,7 +1,7 @@
 ﻿using COO.Application.Config.Config;
 using COO.Application.Config.Plant;
 using COO.Application.MainFuction.DeliverySale;
-using COO.Application.MainFuction.EcusTS;
+using COO.Application.MainFuction.BoomEcus;
 using COO.Data.EF;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
@@ -25,7 +25,6 @@ using System.Runtime.CompilerServices;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
-using COO.Application.MainFuction.Boom;
 using COO.Application.Config.CountryShip;
 using Microsoft.EntityFrameworkCore.Internal;
 

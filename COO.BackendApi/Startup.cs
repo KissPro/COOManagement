@@ -2,7 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using COO.Application.Config.Config;
 using COO.Application.Config.CountryShip;
+using COO.Application.Config.Plant;
+using COO.Application.MainFuction.BoomEcus;
+using COO.Application.MainFuction.DeliverySale;
 using COO.Data.EF;
 using COO.Utilities.Constants;
 using Microsoft.AspNetCore.Builder;
@@ -35,7 +39,11 @@ namespace COO.BackendApi
 
             // Declare DI
             services.AddTransient<ICountryShipService, CountryShipService>();
-
+            services.AddTransient<IBoomEcusService, BoomEcusService>();
+            services.AddTransient<IDeliverySaleService, DeliverySaleService>();
+            services.AddTransient<ICountryShipService, CountryShipService>();
+            services.AddTransient<IConfigService, ConfigService>();
+            services.AddTransient<IPlantService, PlantService>();
 
             // Swagger Config
             services.AddSwaggerGen(c =>
@@ -45,6 +53,7 @@ namespace COO.BackendApi
 
 
             services.AddControllers();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +74,11 @@ namespace COO.BackendApi
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger COO Management V1");
             });
+
+            app.UseCors(options =>
+            options.WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {

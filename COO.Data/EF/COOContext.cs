@@ -15,6 +15,7 @@ namespace COO.Data.EF
         {
         }
 
+        // Table
         public virtual DbSet<TblBoom> TblBoom { get; set; }
         public virtual DbSet<TblConfig> TblConfig { get; set; }
         public virtual DbSet<TblCountryShip> TblCountryShip { get; set; }
@@ -23,6 +24,10 @@ namespace COO.Data.EF
         public virtual DbSet<TblEcusTs> TblEcusTs { get; set; }
         public virtual DbSet<TblPlant> TblPlant { get; set; }
 
+        public virtual DbSet<TblBoomEcus> TblBoomEcus { get; set; }
+
+        // View
+        public virtual DbSet<ViewBoomEcus> ViewBoomEcus { get; set; }
 
         //For migrations database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -36,6 +41,7 @@ namespace COO.Data.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Table
             modelBuilder.Entity<TblBoom>(entity =>
             {
                 entity.HasKey(e => e.Id)
@@ -70,6 +76,14 @@ namespace COO.Data.EF
                     .IsUnicode(false);
                 
                 entity.Property(e => e.AltGroup)
+                  .HasMaxLength(10)
+                  .IsUnicode(false);
+
+                entity.Property(e => e.Level)
+                  .HasMaxLength(10)
+                  .IsUnicode(false);
+
+                entity.Property(e => e.Item)
                   .HasMaxLength(10)
                   .IsUnicode(false);
             });
@@ -313,6 +327,122 @@ namespace COO.Data.EF
                     .HasMaxLength(50);
 
                 entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<TblBoomEcus>(entity =>
+            {
+                entity.ToTable("tbl_BoomEcusTS").HasNoKey();
+
+                entity.Property(e => e.Country)
+                    .HasMaxLength(20)
+                    .IsUnicode(false).IsRequired(false);
+
+                entity.Property(e => e.DonGiaHd)
+                    .HasColumnName("DonGiaHD")
+                    .HasColumnType("decimal(18, 4)").IsRequired(false);
+
+                entity.Property(e => e.MaHS)
+                    .HasColumnName("MaHS")
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .IsRequired(false);
+
+                entity.Property(e => e.NgayDk)
+                    .HasColumnName("NgayDK")
+                    .HasColumnType("datetime").IsRequired(false);
+
+                entity.Property(e => e.SoTk)
+                    .IsRequired()
+                    .HasColumnName("SoTK")
+                    .HasMaxLength(50)
+                    .IsUnicode(false).IsRequired(false);
+
+                entity.Property(e => e.ParentMaterial)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Plant)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SortString)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AltGroup)
+                  .HasMaxLength(10)
+                  .IsUnicode(false);
+
+                entity.Property(e => e.Level)
+                  .HasMaxLength(10)
+                  .IsUnicode(false);
+
+                entity.Property(e => e.Item)
+                  .HasMaxLength(10)
+                  .IsUnicode(false);
+
+                entity.Property(e => e.TenHang).HasMaxLength(500);
+            });
+            // View
+            modelBuilder.Entity<ViewBoomEcus>(entity =>
+            {
+                entity.HasKey(e => e.TenHang);
+                entity.ToView("v_BoomEcusTS");
+
+                entity.Property(e => e.Country)
+                    .HasMaxLength(20)
+                    .IsUnicode(false).IsRequired(false);
+
+                entity.Property(e => e.DonGiaHd)
+                    .HasColumnName("DonGiaHD")
+                    .HasColumnType("decimal(18, 4)").IsRequired(false);
+
+                entity.Property(e => e.MaHS)
+                    .HasColumnName("MaHS")
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .IsRequired(false);
+
+                entity.Property(e => e.NgayDk)
+                    .HasColumnName("NgayDK")
+                    .HasColumnType("datetime").IsRequired(false);
+
+                entity.Property(e => e.SoTk)
+                    .IsRequired()
+                    .HasColumnName("SoTK")
+                    .HasMaxLength(50)
+                    .IsUnicode(false).IsRequired(false);
+
+                entity.Property(e => e.ParentMaterial)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Plant)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SortString)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AltGroup)
+                  .HasMaxLength(10)
+                  .IsUnicode(false);
+
+                entity.Property(e => e.Level)
+                  .HasMaxLength(10)
+                  .IsUnicode(false);
+
+                entity.Property(e => e.Item)
+                  .HasMaxLength(10)
+                  .IsUnicode(false);
+
+                entity.Property(e => e.TenHang).HasMaxLength(500);
+
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -50,9 +50,9 @@ namespace COO.Application.Config.CountryShip
             return country;
         }
 
-        public async Task<int> Update(TblCountryShip request)
+        public async Task<int> Update(Guid id, TblCountryShip request)
         {
-            var country = await _context.TblCountryShip.FindAsync(request.Id);
+            var country = await _context.TblCountryShip.FindAsync(id);
             if (country == null) throw new COOException($"Can not find a country: {request.Id}");
 
             country.HMDShipToCode = request.HMDShipToCode;

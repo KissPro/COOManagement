@@ -14,7 +14,7 @@ using SQLitePCL;
 
 namespace COO.BackendApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/country")]
     [ApiController]
     public class CountryShipController : ControllerBase
     {
@@ -38,7 +38,7 @@ namespace COO.BackendApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm] TblCountryShip request)
+        public async Task<IActionResult> Create([FromBody] TblCountryShip request)
         {
             if (!ModelState.IsValid)
             {
@@ -53,14 +53,14 @@ namespace COO.BackendApi.Controllers
         }
         
         [HttpPut("{countryId}")]
-        public async Task<IActionResult> Update([FromRoute] Guid countryId, [FromForm] TblCountryShip request)
+        public async Task<IActionResult> Update([FromRoute] Guid countryId, [FromBody] TblCountryShip request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             request.Id = countryId;
-            var affectResult = await _countryService.Update(request);
+            var affectResult = await _countryService.Update(countryId, request);
             if (affectResult == 0)
                 return BadRequest();
             return Ok();

@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "ShowCountryShip";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var listCountry = (List<COO.Data.EF.TblCountryShip>)ViewBag.ListCountryShip;
+}
+
+@section jsFooter {
+    <!--Add JS config-->
+    <script src="~/Content/js/ConfigController/CountryShip.js"></script>
+}
+
+@using (Html.BeginForm("Inspection", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @id = "approval" }))
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-3">
+                    <i class="fas fa-table"></i>
+                    List Country Ship
+                </div>
+                <div class="col-md-9" style="display:flex; justify-content:flex-end">
+                    <span class="btn-sm btn btn-primary ml-1" id="addMode" value="Add Mode" data-toggle="modal" data-target="#addModal">
+                            <i class="fas fa-plus"></i>
+                            Add
+                        </span>
+                    <span class="btn-sm btn-success ml-1" id="btnExport">
+                        <i class="fas fa-download"></i>
+                        Download
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive" style="zoom:90%;">
+                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0"
+                       style="table-layout: fixed;word-wrap:break-word;">
+                    <thead>
+                        <tr>
+                            <th style="width:2.5rem;">#</th>
+                            <th style="width:5rem;">HMD Ship To Code</th>
+                            <th>HMD Ship To Name</th>
+                            <th style="width:5rem;">Ship To Country Code</th>
+                            <th>Ship To Country Name</th>
+                            <th style="width:4.5rem;">Updated By</th>
+                            <th style="width:4.5rem;">Updated Date</th>
+                            <th>RemarkCountry</th>
+                        </tr>
+                    </thead>
+                    <tbody class="loadData">
+                        @if (ViewBag.ListCountryShip != null)
+                        {
+                            foreach (var item in listCountry)
+                            {
+                                <tr class="btnDetail" data-id="@item.Id">
+                                    <td data-id="@item.Id"></td>
+                                    <td>@item.HMDShipToCode.ToString().Trim()</td>
+                                    <td>@item.HMDShipToParty</td>
+                                    <td>@item.ShipToCountryCode</td>
+                                    <td>@item.ShipToCountryName</td>
+                                    <td>@item.UpdatedBy</td>
+                                    <td>@item.UpdatedDate.ToString("yyyy/MM/dd")</td>
+                                    <td>@item.RemarkCountry</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

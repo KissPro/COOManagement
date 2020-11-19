@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 using COO.Application.Config.Config;
 using COO.Application.Config.CountryShip;
 using COO.Application.Config.Plant;
-using COO.Application.MainFuction.Boom;
+using COO.Application.MainFuction.BoomEcus;
 using COO.Application.MainFuction.DeliverySale;
-using COO.Application.MainFuction.EcusTS;
 using COO.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,7 +41,7 @@ namespace COO.ServiceSAP
             services.AddTransient<ICountryShipService, CountryShipService>();
             services.AddTransient<IEcusService, EcusService>();
             services.AddTransient<IDeliverySaleService, DeliverySaleService>();
-            services.AddTransient<IBoomService, BoomService>();
+            services.AddTransient<IBoomEcusService, BoomEcusService>();
         }
 
         public override Task StartAsync(CancellationToken cancellationToken)
@@ -86,7 +85,7 @@ namespace COO.ServiceSAP
 
             // RUN =====================
             _scheduler.JobFactory = new DS_BoomJobFactory(services.BuildServiceProvider());
-            await _scheduler.ScheduleJob(collectListDS_Boom, triggerDS, stoppingToken);
+            await _scheduler.ScheduleJob(collectListDS_Boom, triggerNow, stoppingToken);
         }
     }
 }

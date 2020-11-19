@@ -12,6 +12,10 @@ namespace COO.Data.EF
         public string SortString { get; set; }
         public string AltGroup { get; set; }
         public string Plant { get; set; }
+
+        public string Level { get; set; }
+        public string Item { get; set; }
+
         public string Description { get; set; }
         public DateTime? InsertedDate { get; set; }
     }

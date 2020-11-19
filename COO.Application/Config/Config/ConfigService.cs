@@ -49,9 +49,9 @@ namespace COO.Application.Config.Config
             return config;
         }
 
-        public async Task<int> Update(TblConfig request)
+        public async Task<int> Update(Guid id, TblConfig request)
         {
-            var config = await _context.TblConfig.FindAsync(request.Id);
+            var config = await _context.TblConfig.FindAsync(id);
             if (config == null) throw new COOException($"Can not find a config: {request.Id}");
 
             config.EcusRuntime = request.EcusRuntime;

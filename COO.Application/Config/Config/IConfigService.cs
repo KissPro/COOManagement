@@ -10,7 +10,7 @@ namespace COO.Application.Config.Config
     {
         Task<List<TblConfig>> GetListAll();
         Task<Guid> Create(TblConfig request);
-        Task<int> Update(TblConfig request);
+        Task<int> Update(Guid id, TblConfig request);
         Task<int> Delete(Guid id);
         Task<TblConfig> GetById(Guid id);
 
