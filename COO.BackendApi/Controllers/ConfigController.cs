@@ -36,7 +36,7 @@ namespace COO.BackendApi.Controllers
                 throw new COOException("Error: ", ex);
             }
         }
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<IActionResult> CreateConfig([FromBody]TblConfig config)
         {
             try
@@ -46,6 +46,8 @@ namespace COO.BackendApi.Controllers
                     return BadRequest(ModelState);
                 }
                 var result = await _config.Create(config);
+                if (result == null)
+                    return BadRequest();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -54,15 +56,17 @@ namespace COO.BackendApi.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateConfig(Guid id, [FromBody]TblConfig config)
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> UpdateConfig([FromRoute] Guid Id, [FromBody]TblConfig config)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                var result = await _config.Update(id, config);
-                return Ok(result);
+                var result = await _config.Update(Id, config);
+                if (result == 0)
+                    return BadRequest();
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -70,15 +74,17 @@ namespace COO.BackendApi.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteConfig(Guid id)
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteConfig(Guid Id)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                var resul = await _config.Delete(id);
-                return Ok(id);
+                var result = await _config.Delete(Id);
+                if (result == 0)
+                    return BadRequest();
+                return Ok();
             }
             catch (Exception ex)
             {

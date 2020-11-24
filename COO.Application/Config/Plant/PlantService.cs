@@ -1,5 +1,6 @@
 ﻿using COO.Data.EF;
 using COO.Utilities.Exceptions;
+using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -58,6 +59,21 @@ namespace COO.Application.Config.Plant
             plant.UpdatedDate = request.UpdatedDate;
             plant.RemarkPlant = request.RemarkPlant;
             return await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> InsertList(List<TblPlant> listPlant)
+        {
+            try
+            {
+                if (listPlant == null || listPlant.Count == 0)
+                    return 0;
+                await _context.BulkInsertAsync(listPlant, new BulkConfig { BulkCopyTimeout = 1000000 });
+            }
+            catch (Exception ex)
+            {
+                throw new COOException($"Error insert list plant:" + ex);
+            }
+            return 1;
         }
     }
 }

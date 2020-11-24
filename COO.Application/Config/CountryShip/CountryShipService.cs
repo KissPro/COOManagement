@@ -1,5 +1,6 @@
 ﻿using COO.Data.EF;
 using COO.Utilities.Exceptions;
+using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,21 @@ namespace COO.Application.Config.CountryShip
             country.UpdatedBy = request.UpdatedBy;
             country.UpdatedDate = request.UpdatedDate;
             return await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> InsertList(List<TblCountryShip> listCountry)
+        {
+            try
+            {
+                if (listCountry == null || listCountry.Count == 0)
+                    return 0;
+                await _context.BulkInsertAsync(listCountry, new BulkConfig { BulkCopyTimeout = 1000000 });
+            }
+            catch (Exception ex)
+            {
+                throw new COOException($"Error insert list country:" + ex);
+            }
+            return 1;
         }
     }
 }

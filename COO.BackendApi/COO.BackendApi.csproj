@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
     <PackageReference Include="Flurl" Version="3.0.0" />
     <PackageReference Include="Flurl.Http" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.9" />
@@ -22,6 +23,11 @@
     <ProjectReference Include="..\COO.Data\COO.Data.csproj" />
     <ProjectReference Include="..\COO.Utilities\COO.Utilities.csproj" />
     <ProjectReference Include="..\COO.ViewModels\COO.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="UploadedFile\CountryShip\" />
+    <Folder Include="UploadedFile\Plant\" />
   </ItemGroup>
 
 

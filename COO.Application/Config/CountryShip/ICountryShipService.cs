@@ -12,7 +12,8 @@ namespace COO.Application.Config.CountryShip
         Task<Guid> Create(TblCountryShip request);
         Task<int> Update(Guid id, TblCountryShip request);
         Task<int> Delete(Guid id);
-        Task<TblCountryShip> GetById(Guid id); 
+        Task<TblCountryShip> GetById(Guid id);
+        Task<int> InsertList(List<TblCountryShip> listCountry);
 
     }
 }

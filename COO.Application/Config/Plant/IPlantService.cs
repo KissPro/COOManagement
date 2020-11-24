@@ -13,6 +13,7 @@ namespace COO.Application.Config.Plant
         Task<int> Update(Guid id, TblPlant request);
         Task<int> Delete(Guid id);
         Task<TblPlant> GetById(Guid id);
+        Task<int> InsertList(List<TblPlant> listPlant);
 
     }
 }

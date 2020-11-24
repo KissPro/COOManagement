@@ -60,8 +60,8 @@ namespace COO.Application.Config.Config
             config.DstimeNextMonth = request.DstimeNextMonth;
             config.DstimeNextYear = request.DstimeNextYear;
             config.DstimeLastYear = request.DstimeLastYear;
-            config.UpdatedBy = config.UpdatedBy;
-            config.UpdatedDate = config.UpdatedDate;
+            config.UpdatedBy = request.UpdatedBy;
+            config.UpdatedDate = request.UpdatedDate;
             return await _context.SaveChangesAsync();
         }
     }
