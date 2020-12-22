@@ -58,5 +58,28 @@ namespace COO.BackendApi.Controllers
                 throw new COOException("Error: ", ex);
             }
         }
+
+        [HttpGet("download/{name}")]
+        public async Task<IActionResult> DownloadTemplate([FromRoute]string name)
+        {
+            try
+            {
+                var fileName = Path.Combine("TemplateFile", name);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
+                if (!System.IO.File.Exists(filePath))
+                    return NotFound();
+                var memory = new MemoryStream();
+                using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    await stream.CopyToAsync(memory);
+                }
+                memory.Position = 0;
+                return File(memory, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); // excel type .xlsx
+            }
+            catch (Exception ex)
+            {
+                throw new COOException("Error:" ,ex);
+            }
+        }
     }
 }

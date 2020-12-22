@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace COO.Data.EF
 {
@@ -9,13 +11,14 @@ namespace COO.Data.EF
         {
             TblDsmanual = new HashSet<TblDsmanual>();
         }
-
         public Guid Id { get; set; }
         public long Delivery { get; set; }
         public long InvoiceNo { get; set; }
         public string MaterialParent { get; set; }
         public string MaterialDesc { get; set; }
         public string ShipToCountry { get; set; }
+        public string ShipToCountryName { get; set; } // From config table
+        public string HMDShipToCode { get; set; } // From config table
         public string PartyName { get; set; }
         public long? CustomerInvoiceNo { get; set; }
         public string SaleUnit { get; set; }
@@ -32,6 +35,8 @@ namespace COO.Data.EF
         public DateTime? UpdatedDate { get; set; }
         public int? Status { get; set; }
 
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<TblDsmanual> TblDsmanual { get; set; }
     }
 }

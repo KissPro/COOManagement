@@ -20,7 +20,9 @@ namespace COO.Data.EF
         public virtual DbSet<TblConfig> TblConfig { get; set; }
         public virtual DbSet<TblCountryShip> TblCountryShip { get; set; }
         public virtual DbSet<TblDeliverySales> TblDeliverySales { get; set; }
+        public virtual DbSet<TblDeliverySales_Temp> TblDeliverySales_Temp { get; set; }
         public virtual DbSet<TblDsmanual> TblDsmanual { get; set; }
+
         public virtual DbSet<TblEcusTs> TblEcusTs { get; set; }
         public virtual DbSet<TblPlant> TblPlant { get; set; }
 
@@ -96,22 +98,9 @@ namespace COO.Data.EF
                     .HasColumnName("ID")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Dsruntime)
-                    .IsRequired()
-                    .HasColumnName("DSRuntime")
-                    .HasMaxLength(50);
+                entity.Property(e => e.Key).HasColumnName("Key");
 
-                entity.Property(e => e.DstimeLastMonth).HasColumnName("DSTimeLastMonth");
-
-                entity.Property(e => e.DstimeLastYear).HasColumnName("DSTimeLastYear");
-
-                entity.Property(e => e.DstimeNextMonth).HasColumnName("DSTimeNextMonth");
-
-                entity.Property(e => e.DstimeNextYear).HasColumnName("DSTimeNextYear");
-
-                entity.Property(e => e.EcusRuntime)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.Value).HasColumnName("Value");
 
                 entity.Property(e => e.RemarkConfig).HasMaxLength(500);
 
@@ -192,7 +181,74 @@ namespace COO.Data.EF
 
                 entity.Property(e => e.PartyName)
                     .HasMaxLength(200);
+                entity.Property(e => e.ShipToCountryName)
+                    .HasMaxLength(200);
+                entity.Property(e => e.HMDShipToCode)
+                    .HasMaxLength(200);
+                entity.Property(e => e.HarmonizationCode)
+                    .HasMaxLength(200);
+                entity.Property(e => e.Address)
+                    .HasMaxLength(500);
 
+                entity.Property(e => e.Plant)
+                   .HasMaxLength(10);
+
+                entity.Property(e => e.PlanGidate)
+                    .HasColumnName("PlanGIDate")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.PlanGisysDate)
+                    .HasColumnName("PlanGISysDate")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.SaleUnit)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ShipToCountry)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<TblDeliverySales_Temp>(entity =>
+            {
+                entity.ToTable("tbl_DeliverySales_Temp");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.ActualGidate)
+                    .HasColumnName("ActualGIDate")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Dnqty).HasColumnName("DNQty");
+
+                entity.Property(e => e.InsertedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.MaterialDesc)
+                    .IsRequired()
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.MaterialParent)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NetPrice).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.NetValue).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.PartyName)
+                    .HasMaxLength(200);
+                entity.Property(e => e.ShipToCountryName)
+                    .HasMaxLength(200);
+                entity.Property(e => e.HMDShipToCode)
+                    .HasMaxLength(200);
                 entity.Property(e => e.HarmonizationCode)
                     .HasMaxLength(200);
                 entity.Property(e => e.Address)
@@ -235,7 +291,27 @@ namespace COO.Data.EF
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Coono).HasColumnName("COONo");
+                entity.Property(e => e.Coono)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("COONo");
+
+                entity.Property(e => e.TrackingNo)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("TrackingNo");
+
+                entity.Property(e => e.Package)
+                 .HasMaxLength(30)
+                 .IsUnicode(false)
+                 .HasColumnName("Package");
+
+                entity.Property(e => e.ShipFrom)
+                 .HasMaxLength(50)
+                 .HasColumnName("ShipFrom");
+
+                entity.Property(e => e.ShipFrom).HasColumnName("ShipFrom");
+                entity.Property(e => e.Package).HasColumnName("Package");
 
                 entity.Property(e => e.CourierDate).HasColumnType("datetime");
 
@@ -249,8 +325,7 @@ namespace COO.Data.EF
 
                 entity.Property(e => e.RemarkDs)
                     .HasColumnName("RemarkDS")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.ReturnDate).HasColumnType("datetime");
 

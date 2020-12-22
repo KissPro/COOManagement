@@ -43,6 +43,22 @@ namespace COO.Application.MainFuction.BoomEcus
             return listEcusTs;
         }
 
+        [Obsolete]
+        public async Task<bool> DeleteAll()
+        {
+            try
+            {
+                _context.Database.ExecuteSqlCommand("TRUNCATE TABLE [dbo].[tbl_EcusTS]");
+                await _context.SaveChangesAsync();
+                return true;                        
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw new COOException("Error: ", ex);
+            }
+        }
+
         public async Task<TblEcusTs> GetById(Guid id)
         {
             var ecusTs = await _context.TblEcusTs.FindAsync(id);

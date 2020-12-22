@@ -54,15 +54,18 @@ namespace COO.Application.Config.Config
             var config = await _context.TblConfig.FindAsync(id);
             if (config == null) throw new COOException($"Can not find a config: {request.Id}");
 
-            config.EcusRuntime = request.EcusRuntime;
-            config.Dsruntime = request.Dsruntime;
-            config.DstimeLastMonth = request.DstimeLastMonth;
-            config.DstimeNextMonth = request.DstimeNextMonth;
-            config.DstimeNextYear = request.DstimeNextYear;
-            config.DstimeLastYear = request.DstimeLastYear;
+            config.Value = request.Value;
+            config.Key = request.Key;
             config.UpdatedBy = request.UpdatedBy;
             config.UpdatedDate = request.UpdatedDate;
             return await _context.SaveChangesAsync();
+        }
+
+        public async Task<string> GetValueByKey(string key)
+        {
+            var config = await _context.TblConfig.SingleOrDefaultAsync(x => x.Key == key);
+            if (config == null) throw new COOException($"Can not find a config by key: {key}");
+            return config.Value;
         }
     }
 }

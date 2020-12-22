@@ -155,32 +155,9 @@ namespace COO.Data.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Dsruntime")
-                        .IsRequired()
-                        .HasColumnName("DSRuntime")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<int>("DstimeLastMonth")
-                        .HasColumnName("DSTimeLastMonth")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DstimeLastYear")
-                        .HasColumnName("DSTimeLastYear")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DstimeNextMonth")
-                        .HasColumnName("DSTimeNextMonth")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DstimeNextYear")
-                        .HasColumnName("DSTimeNextYear")
-                        .HasColumnType("int");
-
-                    b.Property<string>("EcusRuntime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                    b.Property<string>("Key")
+                        .HasColumnName("Key")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RemarkConfig")
                         .HasColumnType("nvarchar(500)")
@@ -193,6 +170,10 @@ namespace COO.Data.Migrations
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime");
+
+                    b.Property<string>("Value")
+                        .HasColumnName("Value")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -272,6 +253,10 @@ namespace COO.Data.Migrations
                         .HasColumnName("DNQty")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("HMDShipToCode")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
                     b.Property<string>("HarmonizationCode")
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
@@ -327,6 +312,10 @@ namespace COO.Data.Migrations
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
+                    b.Property<string>("ShipToCountryName")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
                     b.Property<int?>("Status")
                         .HasColumnType("int");
 
@@ -336,6 +325,104 @@ namespace COO.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tbl_DeliverySales");
+                });
+
+            modelBuilder.Entity("COO.Data.EF.TblDeliverySales_Temp", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnName("ID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ActualGidate")
+                        .HasColumnName("ActualGIDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<long?>("CustomerInvoiceNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Delivery")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Dnqty")
+                        .HasColumnName("DNQty")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("HMDShipToCode")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("HarmonizationCode")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<DateTime>("InsertedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<long>("InvoiceNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("MaterialDesc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("MaterialParent")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<decimal>("NetPrice")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<decimal>("NetValue")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<string>("PartyName")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<DateTime>("PlanGidate")
+                        .HasColumnName("PlanGIDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("PlanGisysDate")
+                        .HasColumnName("PlanGISysDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Plant")
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("SaleUnit")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)")
+                        .HasMaxLength(10)
+                        .IsUnicode(false);
+
+                    b.Property<string>("ShipToCountry")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)")
+                        .HasMaxLength(10)
+                        .IsUnicode(false);
+
+                    b.Property<string>("ShipToCountryName")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("tbl_DeliverySales_Temp");
                 });
 
             modelBuilder.Entity("COO.Data.EF.TblDsmanual", b =>
@@ -350,9 +437,11 @@ namespace COO.Data.Migrations
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
-                    b.Property<long?>("Coono")
+                    b.Property<string>("Coono")
                         .HasColumnName("COONo")
-                        .HasColumnType("bigint");
+                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(30)
+                        .IsUnicode(false);
 
                     b.Property<DateTime?>("CourierDate")
                         .HasColumnType("datetime");
@@ -366,23 +455,36 @@ namespace COO.Data.Migrations
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
+                    b.Property<string>("Package")
+                        .HasColumnName("Package")
+                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(30)
+                        .IsUnicode(false);
+
                     b.Property<DateTime?>("ReceiptDate")
                         .HasColumnType("datetime");
 
                     b.Property<string>("RemarkDs")
                         .HasColumnName("RemarkDS")
-                        .HasColumnType("nchar(10)")
-                        .IsFixedLength(true)
-                        .HasMaxLength(10);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<DateTime?>("ReturnDate")
                         .HasColumnType("datetime");
 
+                    b.Property<string>("ShipFrom")
+                        .HasColumnName("ShipFrom")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
                     b.Property<DateTime?>("TrackingDate")
                         .HasColumnType("datetime");
 
-                    b.Property<long?>("TrackingNo")
-                        .HasColumnType("bigint");
+                    b.Property<string>("TrackingNo")
+                        .HasColumnName("TrackingNo")
+                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(30)
+                        .IsUnicode(false);
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(50)")

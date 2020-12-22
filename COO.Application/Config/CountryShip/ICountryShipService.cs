@@ -13,6 +13,7 @@ namespace COO.Application.Config.CountryShip
         Task<int> Update(Guid id, TblCountryShip request);
         Task<int> Delete(Guid id);
         Task<TblCountryShip> GetById(Guid id);
+        Task<string> GetCountryByName(string countryName);
         Task<int> InsertList(List<TblCountryShip> listCountry);
 
     }

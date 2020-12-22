@@ -39,12 +39,6 @@ namespace COO.Service
         {
             _ecusService = ecusService;
         }
-
-        //public IConfigurationRoot GetConfiguration()
-        //{
-        //    var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-        //    return builder.Build();
-        //}
         public async Task Execute(IJobExecutionContext context)
         {
             Log.Information("========== Ecus TS Running Collect Data. ==========");
@@ -62,7 +56,8 @@ namespace COO.Service
                                 a.DGIA_HDTM  ,								
                                 a.TEN_NUOC_XX,b.NGAY_DK from [DHANGMDDK] a left join [DTOKHAIMD] b on a.SOTK = b.SOTK								
                                 Where a.SOTK is not null								
-                                and b.NGAY_DK is not null		
+                                and b.NGAY_DK is not null
+                                and a.SOTK not like '3%'
                             ";
                 SqlCommand myCommand = new SqlCommand(sql, connection);
                 try
@@ -108,6 +103,7 @@ namespace COO.Service
                 }
             }
             Log.Information("=== Get list ecus success!, Total record:", listEcusTs.Count());
+            await _ecusService.DeleteAll();
             var uploadResult = await _ecusService.InsertList(listEcusTs);
             if (uploadResult == 1)
             {

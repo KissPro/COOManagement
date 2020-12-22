@@ -13,6 +13,6 @@ namespace COO.Application.Config.Config
         Task<int> Update(Guid id, TblConfig request);
         Task<int> Delete(Guid id);
         Task<TblConfig> GetById(Guid id);
-
+        Task<string> GetValueByKey(string key);
     }
 }

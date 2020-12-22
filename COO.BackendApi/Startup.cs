@@ -12,6 +12,7 @@ using COO.Utilities.Constants;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +30,7 @@ namespace COO.BackendApi
         }
 
         public IConfiguration Configuration { get; }
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -41,9 +43,16 @@ namespace COO.BackendApi
             services.AddTransient<ICountryShipService, CountryShipService>();
             services.AddTransient<IBoomEcusService, BoomEcusService>();
             services.AddTransient<IDeliverySaleService, DeliverySaleService>();
+            services.AddTransient<IDSManual, DSManual>();
             services.AddTransient<ICountryShipService, CountryShipService>();
             services.AddTransient<IConfigService, ConfigService>();
             services.AddTransient<IPlantService, PlantService>();
+
+            // Add session config
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(5);//You can set Time   
+            });
 
             // Swagger Config
             services.AddSwaggerGen(c =>
@@ -51,9 +60,27 @@ namespace COO.BackendApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger COO Management", Version = "v1" });
             });
 
+            // Related Class Prevent
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
+            // Cors
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                     builder =>
+                                     {
+                                         builder.WithOrigins("http://localhost:44400",
+                                                             "http://coo-dev.fushan.fihnbb.com")
+                                         .AllowAnyHeader()
+                                         .AllowAnyOrigin()
+                                         .AllowAnyMethod();
+                                     });
+            });
 
             services.AddControllers();
-            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +90,7 @@ namespace COO.BackendApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseRouting();
 
@@ -70,15 +98,12 @@ namespace COO.BackendApi
 
             app.UseSwagger();
 
+            app.UseSession();
+
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger COO Management V1");
             });
-
-            app.UseCors(options =>
-            options.WithOrigins("http://localhost:4200")
-            .AllowAnyMethod()
-            .AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {

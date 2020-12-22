@@ -3,29 +3,15 @@ using COO.Application.Config.Plant;
 using COO.Application.MainFuction.DeliverySale;
 using COO.Application.MainFuction.BoomEcus;
 using COO.Data.EF;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging.Abstractions;
 using Newtonsoft.Json;
 using Quartz;
-using Quartz.Spi;
 using Serilog;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Dynamic;
-using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Runtime.CompilerServices;
-using System.Security.Policy;
-using System.Text;
 using System.Threading.Tasks;
-using Flurl;
 using Flurl.Http;
 using COO.Application.Config.CountryShip;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -62,7 +48,7 @@ namespace COO.ServiceSAP
         {
             Log.Information("========== Delivery Sale Running Collect Data. ==========");
             // Collect Data
-            List<TblDeliverySales> listDS = new List<TblDeliverySales>();
+            List<TblDeliverySales_Temp> listDS = new List<TblDeliverySales_Temp>();
 
             try
             {
@@ -70,10 +56,10 @@ namespace COO.ServiceSAP
                 // 1. Plant get from list plant table
                 var listPlant = await _plantService.GetListAll();
                 // 2. Time range collect data from config table
-                var lastMonth = Convert.ToInt32((await _configService.GetListAll()).FirstOrDefault().DstimeLastMonth.ToString());
-                var nextMonth = Convert.ToInt32((await _configService.GetListAll()).FirstOrDefault().DstimeNextMonth.ToString());
-                var lastYear = Convert.ToInt32((await _configService.GetListAll()).FirstOrDefault().DstimeLastYear.ToString());
-                var nextYear = Convert.ToInt32((await _configService.GetListAll()).FirstOrDefault().DstimeNextYear.ToString());
+                var lastMonth = Convert.ToInt32((await _configService.GetValueByKey("DstimeLastMonth")).ToString());
+                var nextMonth = Convert.ToInt32((await _configService.GetValueByKey("DstimeNextMonth")).ToString());
+                var lastYear = Convert.ToInt32((await _configService.GetValueByKey("DstimeLastYear")).ToString());
+                var nextYear = Convert.ToInt32((await _configService.GetValueByKey("DstimeNextYear")).ToString());
                 DateTime firstDate = DateTime.Now.AddMonths(-lastMonth).AddYears(-lastYear);
                 DateTime lastDate = DateTime.Now.AddMonths(nextMonth).AddYears(nextYear);
                 // 3. Only get HMD ship to code in country ship table
@@ -139,14 +125,13 @@ namespace COO.ServiceSAP
                             //var NetPrice = Convert.ToDecimal(dn["NET_PRICE"].ToString());
                             //var PlanGidate = Convert.ToDateTime(dn["PL_GI_DATE"].ToString());
                             //var PlanGisysDate = Convert.ToDateTime(dn["PGI_SYSTEM_DATE"].ToString());
-                            var ds = new TblDeliverySales()
+                            var ds = new TblDeliverySales_Temp()
                             {
                                 Id = Guid.NewGuid(),
                                 Delivery = (long)Convert.ToDouble(dn["DELIVERY"].ToString()),
                                 InvoiceNo = (long)Convert.ToDouble(dn["INVOICE_NUMBER_1ST"].ToString()),
                                 MaterialParent = dn["MATERIAL"].ToString(),
                                 MaterialDesc = dn["MATERIAL_DESCRIPTION"].ToString(),
-                                ShipToCountry = dn["SHIP_TO_COUNTRY"].ToString(),
                                 PartyName = dn["HMD_SHIPTO_PARTY_NAME"].ToString(),
                                 CustomerInvoiceNo = (!String.IsNullOrEmpty(dn["BOLNR"].ToString().Trim()) && dn["BOLNR"].ToString().Trim() != "`") ? (long)Convert.ToDouble(dn["BOLNR"].ToString().Trim()) : (long?)null,
                                 SaleUnit = dn["SALES_UNIT"].ToString(),
@@ -157,15 +142,19 @@ namespace COO.ServiceSAP
                                 PlanGidate = Convert.ToDateTime(dn["PL_GI_DATE"].ToString()),
                                 PlanGisysDate = Convert.ToDateTime(dn["PGI_SYSTEM_DATE"].ToString()),
                                 Plant = item.Plant,
-                                //Address COO
-                                //HarmonizationCode
-                                InsertedDate = DateTime.Now
+                                HarmonizationCode = dn["HS_CODE"].ToString(),
+                                Address = dn["WE_ZIP_CODE"].ToString() + ';' + dn["WE_ZIP_CITY"].ToString() + ';' + dn["WE_STREET"].ToString() + ';' + dn["WE_UF3"].ToString(),
+                                HMDShipToCode = dn["HMD_SHIPTO_CODE"].ToString().Trim(),
+                                ShipToCountryName = dn["HMD_SHIPTO_COUNTRY_NAME"].ToString().ToUpper(),
+                                ShipToCountry = await _countryService.GetCountryByName(dn["HMD_SHIPTO_COUNTRY_NAME"].ToString().ToUpper()), // GET from config table
+                                InsertedDate = DateTime.Now,
+                                Status = 0, // Incoming
                             };
                             listDS.Add(ds);
                         }
                     }
                 }
-                var uploadResultDS = await _dsService.InsertList(listDS);
+                var uploadResultDS = await _dsService.InsertListDN(listDS);
 
                 //var uploadResultDS = 1;
 
@@ -243,8 +232,13 @@ namespace COO.ServiceSAP
                             }
                         }
                         Log.Information($"=== Get Boom ok, Total Record: {listDSBoom.Count}");
+                        await _boomService.DeleteAll();
                         var uploadResult = await _boomService.InsertList(listDSBoom);
-                        if (uploadResult == 1)
+
+                        // Insert view to new table
+                        var viewResult = await _boomService.InsertView();
+
+                        if (uploadResult == 1 && viewResult == true)
                         {
                             Log.Information("========== Collect Boom : Successfully ==========");
                         }

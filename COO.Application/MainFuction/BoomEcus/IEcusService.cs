@@ -9,6 +9,7 @@ namespace COO.Application.MainFuction.BoomEcus
     public interface IEcusService
     {
         Task<List<TblEcusTs>> GetListAll();
+        Task<bool> DeleteAll();
         Task<Guid> Create(TblEcusTs request);
         Task<int> Delete(Guid id);
         Task<TblEcusTs> GetById(Guid id);

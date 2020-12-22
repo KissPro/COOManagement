@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,12 +35,14 @@ namespace COO.ServiceSAP
             // Prepare the DI container
             // 0. Common
             services = new ServiceCollection();
-            services.AddDbContext<COOContext>(options => options.UseSqlServer("data source=HVNN0606\\SQLEXPRESS;initial catalog=COO;user id=sa;password=123;MultipleActiveResultSets=True;"));
+            services.AddDbContext<COOContext>(options => options.UseSqlServer("data source=hvlappsdb02-dev;initial catalog=COO;user id=imes;password=jan2015;MultipleActiveResultSets=True;"));
+            //services.AddDbContext<COOContext>(options => options.UseSqlServer("data source=HVNN0606\\SQLEXPRESS;initial catalog=COO;user id=sa;password=123;MultipleActiveResultSets=True;"));
             services.AddTransient<CollectListDS_Boom>();
             services.AddTransient<IPlantService, PlantService>();
             services.AddTransient<IConfigService, ConfigService>();
             services.AddTransient<ICountryShipService, CountryShipService>();
             services.AddTransient<IEcusService, EcusService>();
+            services.AddTransient<IBoomService, BoomService>();
             services.AddTransient<IDeliverySaleService, DeliverySaleService>();
             services.AddTransient<IBoomEcusService, BoomEcusService>();
         }
@@ -75,7 +78,7 @@ namespace COO.ServiceSAP
             // At second :00, at minute :00, at 06am, 07am, 08am, 09am, 10am, 11am, 12pm, 13pm, 14pm, 15pm, 16pm and 17pm, on every Monday, Tuesday, Wednesday, Thursday and Friday, every month
             ITrigger triggerDS = TriggerBuilder.Create()
                     .WithIdentity("triggerDS", "group2")
-                    .WithCronSchedule("0 0 6,7,8,9,10,11,12,13,14,15,16,17 ? * MON,TUE,WED,THU,FRI *")
+                    .WithCronSchedule("0 0 8,10,11,12,14,15,16,17,18,20 ? * MON,TUE,WED,THU,FRI *")
                     .Build();
 
             // Job Int
@@ -85,7 +88,7 @@ namespace COO.ServiceSAP
 
             // RUN =====================
             _scheduler.JobFactory = new DS_BoomJobFactory(services.BuildServiceProvider());
-            await _scheduler.ScheduleJob(collectListDS_Boom, triggerNow, stoppingToken);
+            await _scheduler.ScheduleJob(collectListDS_Boom, triggerDS, stoppingToken);
         }
     }
 }

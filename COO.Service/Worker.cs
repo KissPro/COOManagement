@@ -36,7 +36,7 @@ namespace COO.Service
             // Prepare the DI container
             // 0. Common
             services = new ServiceCollection();
-            services.AddDbContext<COOContext>(options => options.UseSqlServer("data source=HVNN0606\\SQLEXPRESS;initial catalog=COO;user id=sa;password=123;MultipleActiveResultSets=True;"));
+            services.AddDbContext<COOContext>(options => options.UseSqlServer("data source=hvlappsdb02-dev;initial catalog=COO;user id=imes;password=jan2015;MultipleActiveResultSets=True;"));
             services.AddTransient<IPlantService, PlantService>();
             services.AddTransient<IConfigService, ConfigService>();
             services.AddTransient<ICountryShipService, CountryShipService>();
@@ -89,7 +89,7 @@ namespace COO.Service
             // RUN =====================
             // 1. Ecus
             _schedulerTS.JobFactory = new EcusJobFactory(services.BuildServiceProvider());
-            await _schedulerTS.ScheduleJob(collectListEcusTS, triggerNow, stoppingToken);
+            await _schedulerTS.ScheduleJob(collectListEcusTS, triggerTS, stoppingToken);
         }
     }
 

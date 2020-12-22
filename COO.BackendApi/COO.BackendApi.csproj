@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -8,6 +8,9 @@
     <PackageReference Include="EPPlus.Core" Version="1.5.4" />
     <PackageReference Include="Flurl" Version="3.0.0" />
     <PackageReference Include="Flurl.Http" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
       <PrivateAssets>all</PrivateAssets>
@@ -26,7 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="TemplateFile\" />
     <Folder Include="UploadedFile\CountryShip\" />
+    <Folder Include="UploadedFile\COO Manual\" />
     <Folder Include="UploadedFile\Plant\" />
   </ItemGroup>
 

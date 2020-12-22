@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -79,6 +80,19 @@ namespace COO.Application.Config.CountryShip
                 throw new COOException($"Error insert list country:" + ex);
             }
             return 1;
+        }
+
+        public async Task<string> GetCountryByName(string countryName)
+        {
+            try
+            {
+                var country = await _context.TblCountryShip.FirstOrDefaultAsync();
+                return country.ShipToCountryCode;
+            }
+            catch (Exception ex)
+            {
+                throw new COOException("Error", ex);
+            }
         }
     }
 }

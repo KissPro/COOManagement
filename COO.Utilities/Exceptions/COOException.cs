@@ -10,6 +10,7 @@ namespace COO.Utilities.Exceptions
 
         public COOException(string message) : base(message) { }
 
-        public COOException(string message, Exception ex) : base(message, ex) { }
+        public COOException(string message, Exception ex) : base(message, ex) {
+        }
     }
 }

@@ -40,6 +40,48 @@ namespace COO.Application.MainFuction.BoomEcus
             return listboom;
         }
 
+        [Obsolete]
+        public async Task<bool> DeleteAll()
+        {
+            try
+            {
+                _context.Database.ExecuteSqlCommand("TRUNCATE TABLE [dbo].[tbl_Boom]");
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw new COOException("Error: ", ex);
+            }
+        }
+
+        [Obsolete]
+        public async Task<bool> InsertView()
+        {
+            try
+            {
+                string cmd = @"
+                                truncate table [dbo].[tbl_BoomEcusTS]
+                                insert into [dbo].[tbl_BoomEcusTS](
+                                    [MaHS],[Quantity],[DonGiaHD],[Country],[SoTK],[NgayDK],[ParentMaterial],[SortString]
+                                    ,[AltGroup],[Plant],[TenHang],[Level],[Item])
+                                select 
+                                    [MaHS],[Quantity],[DonGiaHD],[Country],[SoTK],[NgayDK],[ParentMaterial],[SortString]
+                                    ,[AltGroup],[Plant],[TenHang],[Level],[Item] 
+                                from [dbo].[v_BoomEcusTS]
+                             ";
+                 _context.Database.ExecuteSqlCommand(cmd);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw new COOException("Error: ", ex);
+            }
+        }
+
         public async Task<TblBoom> GetById(Guid id)
         {
             var boom = await _context.TblBoom.FindAsync(id);
